@@ -34,7 +34,9 @@
         <script src="kendo/js/kendo.mobile.min.js"></script>
         <script type="text/javascript" src="scripts/main.js"></script>
         <script type="text/javascript" src="scripts/card.js"></script>
-        <script type="text/javascript">
+       <script type="text/javascript">
+         var serviceURL = "http://www.adapptalo.com/test/services/";
+        //var serviceURL = "http://localhost/test/services/";
         function onBodyLoad()
         {
             document.addEventListener("deviceready", onDeviceReady, false);
@@ -55,13 +57,14 @@
             var dataSource = new kendo.data.DataSource({
                 transport: {
                     read: {
-                        url: 'http://www.adapptalo.com/test/services/getbeers.php',
                         //url: 'http://local.yahooapis.com/LocalSearchService/V3/localSearch?appid=YahooDemo&query='+search.value+'&zip='+zip.value+'&output=json&results=15',
+                        url: serviceURL + 'getbeers.php',
                         dataType: "json" // JSONP (JSON with padding) is required for cross-domain AJAX
                     }
                 },
                 schema: {
-                    data: "ResultSet.Result"
+                    //data: "ResultSet.Result"
+                    data: "items"
                     
                 },
                 error: function(e) {
@@ -71,49 +74,29 @@
                     $("#resultListView").html(kendo.render(template, this.view()));
                 }
             });
-            //dataSource.sort = ({field: "CERVESERA", dir: "asc"});
-            // dataSource.sort = ({field: "Distance", dir: "asc"});
-           dataSource.read();
+            //dataSource.sort = ({field: "Distance", dir: "asc"});
+            dataSource.read();
             $("#resultListView").kendoMobileListView({dataSource:dataSource,template: $("#customListViewTemplate").html()});
         }
  
         function onResult(resultData) {
             console.log("Results " + resultData);
-            
-            $("#resultListView").kendoMobileListView({dataSource: kendo.data.DataSource.create({data:resultData}),
+            alert(JSON.stringify(resultData));
+            $("#resultListView").kendoMobileListView({dataSource: kendo.data.DataSource.create({data:resultData,sort: { field: "Distance", dir: "asc" }}),
                 template: $("#customListViewTemplate").html()});
-            /*$("#resultListView").kendoMobileListView({dataSource: kendo.data.DataSource.create({data:resultData,sort: { field: "CERVESERA", dir: "asc" }}),
-                template: $("#customListViewTemplate").html()});*/
         }
     </script>
     </head>
     <body onload="onBodyLoad()">
-<!--
 <script type="text/x-kendo-template" id="customListViewTemplate">
-    <h4>${Title}</h4>
-    <p>${Address}</p>
-    <h4 id="distance">${Distance} miles</h4>
-    <a data-role="button" class="details-link">Visit Website</a>
-</script>-->
-
- <script type="text/x-kendo-template" id="customListViewTemplate">
     <h4>${CERVESA}</h4>
     <p>${CERVESERA}</p>
     <h4 id="distance">${PROCEDENCIA}</h4>
     <a data-role="button" class="details-link">Visit Website</a>
 </script>
+ 
 <div id="resultsView" data-role="view" data-title="Biz Finder" data-layout="app">
-    <div class="form">
-        <div id="leftcol"></div>
-            <div id="centercol">
-                <label id="lblZip" for="zip">Zip</label>
-                <input id="zip" type="search" value="90210" maxlength="5" size="5" onchange="getData(onResult)"/>
-                <label for="search">Search</label>
-                <input id="search" size="10" maxlength="10" type="search" value="spa" onchange="getData(onResult)"/>
-            </div>
-        <div id="rightcol"></div>
-    </div>
-    <ul id="resultListView"/>
+      <ul id="resultListView"/>
 </div>
  
 <div id="settings" data-role="view" data-title="Settings" data-layout="app">
@@ -142,7 +125,7 @@
 </div>
  
 <style scoped>
-    /*#customListViewTemplate {
+    #customListViewTemplate {
         margin:0;
         padding-right: 5px;
     }
@@ -245,7 +228,7 @@
         position: absolute;
         right: 0.6em;
         top: 50%;
-    }*/
+    }
     </style>
     <script>
         window.kendoMobileApplication = new kendo.mobile.Application(document.body);
