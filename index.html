@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Jitterz Mobile</title>
+        <title>Barcelona Beer Festival</title>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
         <!-- Styles -->
@@ -87,7 +87,7 @@
         }
     </script>
     </head>
-    <body onload="onBodyLoad()">
+    <body>
 <script type="text/x-kendo-template" id="customListViewTemplate">
     <img class="cardPicture" src="http://www.adapptalo.com/test/www/pics/beerimages/${IMAGEN}" alt="${CERVESERA}" />
     <h4>${CERVESA}</h4>
@@ -96,7 +96,7 @@
     <a data-role="button" class="details-link"></a>
 </script>
  
-<div id="resultsView" data-role="view" data-title="Biz Finder" data-layout="app">
+<div id="resultsView" data-role="view" data-title="BeerList" data-layout="app">
       <ul id="resultListView"/>
 </div>
  
@@ -104,7 +104,7 @@
     <h2>This is the Settings View...</h2>
 </div>
  
-<div id="about" data-role="view" data-title="About" data-layout="app">
+<div id="about" data-role="view" data-title="BeerWish" data-layout="app">
     <h2>This is the About View...</h2>
 </div>
  
@@ -113,14 +113,12 @@
     <header data-role="header">
         <div data-role="navbar">
             <span id="ttl" data-role="view-title"></span>
-            <a data-align="right"  data-role="button" data-icon="settings" href="#settings"></a>
-            <a data-align="left" data-role="backbutton" href="#index">Back</a>
         </div>
     </header>
     <footer data-role="footer">
         <div data-role="tabstrip">
-            <a href="#resultsView" data-icon="search">Search</a>
-            <a href="#about" data-icon="about">About</a>
+            <a href="#resultsView" data-icon="search">BeerList</a>
+            <a href="#about" data-icon="about">BeerWish</a>
         </div>
     </footer>
 </div>
@@ -132,56 +130,17 @@
        
     }
  
-    #leftcol {
-        position:relative;
-        top:-10px;
-        left:-10px;
-        float:left;
-        width:2%;
-        margin:0 0 -10px 0;
-        padding:10px;
-        z-index:100;
+    
+    .cardPicture{
+        margin-right: 5px;
     }
- 
-    #rightcol {
-        position:relative;
-        top:-10px;
-        right:-10px;
-        float:right;
-        voice-family: "\"}\"";
-        voice-family:inherit;
-        width:5%;
-        margin:0 0 -10px 0;
-        padding:10px;
-        z-index:99;
-    }
-     
+    
     #settings h2, #about h2 {
         margin: 10px;
         font-family: Tahoma;
     }
  
-    #centercol {
-        position:relative;
-        padding-left: 30%;
-    }
-    .form h3 {
-        padding-left: 30%;
-    }
     
-    .form {
-        width: 100%;
-        padding-top: 10px;
-        padding-bottom: 15px;
-        padding-left: 12px;
- 
-        background-size: 100% auto;
-        background-image: -moz-linear-gradient(center top , rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.45) 6%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.15) 50%, rgba(100, 100, 100, 0));
-        background-image: -webkit-gradient(linear, 50% 0, 50% 100%, color-stop(0, rgba(255, 255, 255, 0.5)), color-stop(0.06, rgba(255, 255, 255, 0.45)), color-stop(0.5, rgba(255, 255, 255, 0.2)), color-stop(0.5, rgba(255, 255, 255, 0.15)), color-stop(1, rgba(100, 100, 100, 0)));
-        background-color: #ef652a;
-        color: #fff;
-    }
-     
     h3, h4, p {
         margin:0;
         padding:0;
@@ -212,13 +171,7 @@
         color: #808080;
        /* font-size: 16px;*/
     }
-    #content {
-        margin: 0px;
-        padding: 0px;
-    }
-    #header {
-        background-color: pink;
-    }
+    
     #resultListView {
         background-size: 100%;
         background-image: -moz-linear-gradient(center top , rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.45) 6%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.15) 50%, rgba(100, 100, 100, 0));
