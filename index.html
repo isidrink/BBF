@@ -89,10 +89,11 @@
     </head>
     <body onload="onBodyLoad()">
 <script type="text/x-kendo-template" id="customListViewTemplate">
+    <img class="cardPicture" src="http://www.adapptalo.com/test/www/pics/beerimages/${IMAGEN}" alt="${CERVESERA}" />
     <h4>${CERVESA}</h4>
     <p>${CERVESERA}</p>
     <h4 id="distance">${PROCEDENCIA}</h4>
-    <a data-role="button" class="details-link">Visit Website</a>
+    <a data-role="button" class="details-link"></a>
 </script>
  
 <div id="resultsView" data-role="view" data-title="Biz Finder" data-layout="app">
@@ -128,6 +129,7 @@
     #customListViewTemplate {
         margin:0;
         padding-right: 5px;
+       
     }
  
     #leftcol {
@@ -183,31 +185,32 @@
     h3, h4, p {
         margin:0;
         padding:0;
-        font-family: fantasy;
+        font-size: 12px;
+      /*  font-family: fantasy;*/
     }
  
     label {
-        font-size: 18px;
+        /*font-size: 18px;*/
     }
     .km-ios p {
         color: #545454;
-        font-size: 18px;
+        /*font-size: 18px;*/
     }
     .km-android p {
         color: #FFFFFF;
-        font-size: 16px;
+       /* font-size: 16px;*/
     }
     .km-android #distance {
         color: #CCCCCC;
-        font-size: 16px;
+       /* font-size: 16px;*/
     }
     .km-ios #distance {
         color: #808080;
-        font-size: 16px;
+       /* font-size: 16px;*/
     }
     #distance {
         color: #808080;
-        font-size: 16px;
+       /* font-size: 16px;*/
     }
     #content {
         margin: 0px;
@@ -228,6 +231,9 @@
         position: absolute;
         right: 0.6em;
         top: 50%;
+    }
+    .km-ios .km-list > li{
+        line-height: normal;
     }
     </style>
     <script>
