@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Barcelona Beer Festival</title>
+        <title>Jitterz Mobile</title>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
         <!-- Styles -->
@@ -34,153 +34,266 @@
         <script src="kendo/js/kendo.mobile.min.js"></script>
         <script type="text/javascript" src="scripts/main.js"></script>
         <script type="text/javascript" src="scripts/card.js"></script>
-       <script type="text/javascript">
-         var serviceURL = "http://www.adapptalo.com/test/services/";
-        //var serviceURL = "http://localhost/test/services/";
-        function onBodyLoad()
-        {
-            document.addEventListener("deviceready", onDeviceReady, false);
-            // Use the following for testing in the browser
-            getData(onResult);
-   }
-        document.addEventListener("deviceready", onDeviceReady, false);
-            
-        /* When this function is called, Cordova has been initialized and is ready to roll */
-        /* If you are supporting your own protocol, the var invokeString will contain any arguments to the app launch.
-         see http://iphonedevelopertips.com/cocoa/launching-your-own-application-via-a-custom-url-scheme.html
-         for more details -jm */
-        function onDeviceReady() {
-            getData(onResult);
-        }
- 
-        function getData(callback) {
-            var template =  kendo.template($("#customListViewTemplate").html());
-            var dataSource = new kendo.data.DataSource({
-                transport: {
-                    read: {
-                        //url: 'http://local.yahooapis.com/LocalSearchService/V3/localSearch?appid=YahooDemo&query='+search.value+'&zip='+zip.value+'&output=json&results=15',
-                        url: serviceURL + 'getbeers.php',
-                        dataType: "json" // JSONP (JSON with padding) is required for cross-domain AJAX
-                    }
-                },
-                schema: {
-                    //data: "ResultSet.Result"
-                    data: "items"
-                    
-                },
-                error: function(e) {
-                    console.log("Error " + e);
-                },
-                change: function() {
-                    $("#resultListView").html(kendo.render(template, this.view()));
-                }
-            });
-            //dataSource.sort = ({field: "Distance", dir: "asc"});
-            dataSource.read();
-            $("#resultListView").kendoMobileListView({dataSource:dataSource,template: $("#customListViewTemplate").html()});
-        }
- 
-        function onResult(resultData) {
-            console.log("Results " + resultData);
-            alert(JSON.stringify(resultData));
-            $("#resultListView").kendoMobileListView({dataSource: kendo.data.DataSource.create({data:resultData,sort: { field: "Distance", dir: "asc" }}),
-                template: $("#customListViewTemplate").html()});
-        }
-    </script>
+  
     </head>
-    <body>
-<script type="text/x-kendo-template" id="customListViewTemplate">
-    <img class="cardPicture" src="http://www.adapptalo.com/test/www/pics/beerimages/${IMAGEN}" alt="${CERVESERA}" />
-    <h4>${CERVESA}</h4>
-    <p>${CERVESERA}</p>
-    <h4 id="distance">${PROCEDENCIA}</h4>
-    <a data-role="button" class="details-link"></a>
-</script>
- 
-<div id="resultsView" data-role="view" data-title="BeerList" data-layout="app">
-      <ul id="resultListView"/>
-</div>
- 
-<div id="settings" data-role="view" data-title="Settings" data-layout="app">
-    <h2>This is the Settings View...</h2>
-</div>
- 
-<div id="about" data-role="view" data-title="BeerWish" data-layout="app">
-    <h2>This is the About View...</h2>
-</div>
- 
-<!-- define multi-use layout for header/footer -->
-<div data-role="layout" data-id="app">
-    <header data-role="header">
-        <div data-role="navbar">
-            <span id="ttl" data-role="view-title"></span>
+    <body onload="onBodyLoad()">
+        <!-- HOME page -->
+        <div data-role="view" id="home" data-title="BeerList" data-init="announcementListViewTemplatesInit">
+			<div data-role="content">
+                <div id="announcements">
+                    <ul data-role="listview" id="announcements-listview" 
+                        data-style="inset" data-type="group">
+                    </ul>
+                </div>
+            </div>
         </div>
-    </header>
-    <footer data-role="footer">
-        <div data-role="tabstrip">
-            <a href="#resultsView" data-icon="search">BeerList</a>
-            <a href="#about" data-icon="about">BeerWish</a>
+         
+        <!-- Templates -->
+        <script type="text/x-kendo-template" id="rewordsCardsList-template">
+            <a class="listReswardsCard clear" data-role="listview-link" href='rewardCard?bonusPoints=${bonusPoints}&cardNumber=${cardNumber}' data-cardId="${cardNumber}">
+                       <div 
+						#if(bonusPoints<50){#
+							class="silverCardImage cardPicture"
+						#}else{#
+                             class="goldCardImage cardPicture"
+							#}
+						#></div>
+                <div class="cardInformationContainer">
+                    <span>Card Number: </span>
+                    <span class="cardNumberText">${cardNumber}</span>
+                    <div class="expireDateText">Expire on ${expireDate}</div>
+                </div>
+                <div class="clear"></div>
+            </a>    
+        </script>
+        
+        <script type="text/x-kendo-template" id="cardsListTemplate">
+            <a class="listCard clear" data-cardId="${cardNumber}" data-role="listview-link" href='singleCardView?bonusPoints=${bonusPoints}&cardNumber=${cardNumber}'>
+                <div 
+            #if(bonusPoints<50){#
+                class="silverCardImage cardPicture"
+            #}else{#
+                class="goldCardImage cardPicture"
+                #}
+            #></div>
+                <div class="cardInformationContainer">
+                    <span>Card Number: </span>
+                    <span class="cardNumberText">${cardNumber}</span>
+                    <div class="expireDateText">Expire on ${expireDate}</div>
+                </div>
+                <div class="clear"></div>
+            </a>
+        </script>
+        
+        <script type="text/x-kendo-template" id="announcement-listview-template">
+            <img class="item-photo" src="http://www.adapptalo.com/test/www/pics/beerimages/${IMAGEN}" />
+            <h3 class="item-title">${CERVESERA}</h3>
+            <p class="item-info">${PROCEDENCIA}</p>
+        </script>
+        
+		<script type="text/x-kendo-template" id="stores-listview-template">
+	        <p>#:address.replace(/(&nbsp)/g," ")#</p>
+		</script>
+        
+        <script type="text/x-kendo-template" id="singleCardTamplate" >
+            <div id="singleCardContainer" class="clear"> 
+                <div class="cardStyle" id="cardFront"></div>
+                <div class="cardStyle clear" id="cardBack">
+                    <img id="barcodeImage" src="#= barcodeUrl #" alt="Shop Card Id"/>
+                </div>
+            </div>
+            <div id="cardAmount">
+                <div class="singleCardPriceBox">#= cardAmount #</div>
+                <div>
+                    <span>as of</span>
+                    <span>#= currentDate #<span>
+                </div>
+            </div>
+        </script>
+        
+        <script type="text/x-kendo-template" id="rewardsListTemplate">
+	        <p class="item-info">${reward}</p>
+		</script>
+
+        <!-- CARDS List page -->
+		<div data-role="view" id="cardsView" data-title="BeerWish" data-init="listViewCardsInit" data-model="cardsData">
+			<header data-role="header">
+				<div data-role="navbar">
+                    <a id="buttonAddNewCard" data-role="button" href="#addCardView" 
+                         data-align="right" data-icon="add"></a>
+                    <span data-role="view-title"></span>
+				</div>
+			</header>
+            <div id="cardsViewContent" data-role="content">
+				<!-- List of cards -->
+                <ul class="cardListWrapper" data-role="listview" data-style="inset" data-type="group">
+                    <li>
+                        <ul id="cardsList" data-role="listview" data-bind="source: cards" data-template="cardsListTemplate">
+                        </ul>
+                    </li>
+                </ul>
+			</div>
+		</div>
+        
+        <!-- ADD Card View -->
+        <div data-role="view" id="addCardView" data-title="Add Card" data-show="focusCardNumber">
+			<div data-role="header">
+				<div data-role="navbar">
+					<a href="#cardsView" data-role="button" data-align="left">Cancel</a>
+                    <span data-role="view-title"></span>
+                    <a data-role="button" data-align="right" id="buttonAddNewCardView" class="isCardValid">Add</a>
+				</div>
+			</div>
+            <div data-role="content">
+                <div class="addCardLogo clear">
+                    <div class="cardPicture">
+                    </div>
+                    <span class="addCardLogoText">Create New Jitterz Card</span>
+                </div>
+                <ul class="addNewCardWrapper" data-role="listview" data-style="inset">
+    				<li>
+    					<label for="cardNumberField">Card Number </label>
+    					<input type="number" id="cardNumberField" min="3" max="10" maxlength="10" maxlength="9"/>
+    				</li>
+    			</ul>
+    			<div id="addNewCardErrorLog"></div>
+            </div>
+		</div>
+        
+        <!-- Single Card page -->
+		<div data-role="view" id="singleCardView" data-style="inset" data-title="BeerWish" data-show="singleCardShow" data-model="singleCardViewModel">
+			<header data-role="header" data-id="jitterz-default-header">
+				<div data-role="navbar">
+					<a class="nav-button" data-role="backbutton" data-align="left">Back</a>
+					<span data-role="view-title"></span>
+                    <a id="editCardButton" data-role="button" data-align="right" data-rel="actionsheet" href="#singleCardActions" >Edit</a>
+				</div>
+			</header>
+			<div id="cardViewContent" data-role="content" class="km-insetcontent" data-style="inset">
+				<div id="singleCardContainer" class="clear">
+					<div id="cardFront" class="cardStyle silver" >
+						<div class="clear">
+							<div class="iconContainer">
+								<div class="icon"></div>
+							</div>
+							<div class="bonusContainer clear">
+								<span class="bonusPoints" data-bind="text: cardAmount"></span>
+								<div class="dateLine">
+									<span>as of</span>
+									<span data-bind="text: currentDate"></span>
+								</div>
+							</div>
+						</div>
+						<div class="amountLine">
+							<div class="cardNumberLine" data-bind="text: cardId"></div>
+						</div>
+					</div>
+					<div id="cardBack" class="cardStyle clear silver">
+						<img id="barcodeImage" data-bind='attr: {src:barcodeUrl}' alt="Shop Card Id"/>
+					</div>
+				</div>
+			</div>
+            <ul data-role="actionsheet" class="singleCardActionsList" id="singleCardActions" data-open="onOpen" data-popup='{"direction": "left"}'>
+                <li>
+                    <a href="#" data-action="processDeleteCard" class="singleCardDeleteButton">Delete</a>
+                </li>
+            </ul>
+		</div>
+        
+        <!-- REWARDS page -->
+        <div data-role="view" id="rewardsView" data-style="inset" data-title="Sponsors" data-init="rewardsViewInit" data-model="cardsData">
+			<div id="rewardsCardsViewContent" data-role="content">
+                
+                <!-- List of cards -->
+                <ul id="rewordsCardsList" data-role="listview" data-style="inset" data-bind="source: cards" data-template="rewordsCardsList-template"></ul>
+            </div>
         </div>
-    </footer>
-</div>
- 
-<style scoped>
-   
-    
-    .cardPicture{
-        margin-right: 5px;
-    }
-    
-    #settings h2, #about h2 {
-        margin: 10px;
-        font-family: Tahoma;
-    }
- 
-    
-    h3, h4, p {
-        margin:0;
-        padding:0;
-        font-size: 12px;
-      /*  font-family: fantasy;*/
-    }
- 
-    label {
-        /*font-size: 18px;*/
-    }
-    .km-ios p {
-        color: #545454;
-        /*font-size: 18px;*/
-    }
-    .km-android p {
-        color: #FFFFFF;
-       /* font-size: 16px;*/
-    }
-    .km-android #distance {
-        color: #CCCCCC;
-       /* font-size: 16px;*/
-    }
-    .km-ios #distance {
-        color: #808080;
-       /* font-size: 16px;*/
-    }
-    #distance {
-        color: #808080;
-       /* font-size: 16px;*/
-    }
-    
-   
-    .details-link {
-        margin-top: -1em;
-        position: absolute;
-        right: 0.6em;
-        top: 50%;
-    }
-    .km-ios .km-list > li{
-        line-height: normal;
-    }
-    </style>
-    <script>
-        window.kendoMobileApplication = new kendo.mobile.Application(document.body);
-    </script>
-</body>
+        
+		<!-- REWARD CARD page -->
+
+		<div data-role="view" id="rewardCard" data-style="inset"  data-title="Reward Card" data-show="rewardCardShow" data-model="rewardsViewModel">
+			<header data-role="header" data-id="jitterz-default-header">
+				<div data-role="navbar">
+					<a class="nav-button" data-role="backbutton" data-align="left">Back</a>
+					<span data-role="view-title"></span>
+				</div>
+			</header>
+			<div id="singleCardContainer" class="clear">
+				<div id="rewardCardFront" class="cardStyle" >
+					<div class="clear">
+						<div class="iconContainer">
+							<div class="icon"></div>
+						</div>
+						<div class="bonusContainer clear">
+							<span class="bonusPoints" data-bind="text: bonusPoints"></span>
+							<div class="dateLine">
+								<span>as of</span>
+								<span data-bind="text: currentDate"></span>
+							</div>
+						</div>
+
+					</div>
+					<div class="amountLine">
+						<div class="cardNumberLine" data-bind="text: cardNumber"></div>
+					</div>
+				</div>
+				<div id="rewardCardBack" class="cardStyle clear gold">
+					<img id="barcodeImage" data-bind='attr: {src:barcodeURL}' alt="Shop Card Id"/>
+				</div>
+			</div>
+			<div class="clear">
+				<div>
+					<ul id="rewardsList" data-role="listview" data-style="inset" data-bind="source: rewards" data-template="rewardsListTemplate"></ul>
+				</div>
+			</div>
+		</div>
+		
+          <!-- STORES page -->
+		<div data-role="view" id="stores" data-title="Stores" data-show="storesShow" data-stretch="true">
+			<header data-role="header" data-id="jitterz-stores-header">
+				<div data-role="navbar">
+						<ul  id="storesNavigate" data-index="0">
+							<li>
+								Map
+							</li>
+							<li>
+								List
+							</li>
+						</ul>
+				</div>
+			</header>
+			<div id="mapwrap" data-role="content">
+                <div id="map"></div>
+			</div>
+			<div id="storeswrap" data-role="content" style="display:none;">
+                <div data-role="scroller">
+				    <ul data-role="listview" id="stores-listview" 
+				    	data-style="inset" data-type="group" >
+				    </ul>
+                </div>
+    		</div>
+		</div>
+
+        <!-- Page Layout -->
+		<div data-role="layout" data-id="jitterz-default">
+			<header data-role="header" data-id="jitterz-default-header">
+                <div data-role="navbar">
+					<span data-role="view-title"></span>
+				</div>
+			</header>
+
+			<div data-role="footer">
+				<div data-role="tabstrip" data-id="jitterz-tabstrip">
+					<a href="#home" data-icon="home">BeerList</a>
+					<a href="#cardsView" data-icon="card">BeerWish</a>
+					<a href="#rewardsView" data-icon="rewards">Sponsors</a>
+					<a href="#stores" data-icon="stores">Stores</a>
+				</div>
+			</div>
+		</div>
+
+        <script>
+            var app = new kendo.mobile.Application(document.body, { transition: "slide", layout: "jitterz-default" });
+        </script>
+    </body>
 </html>
