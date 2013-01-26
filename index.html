@@ -36,7 +36,7 @@
         <script type="text/javascript" src="scripts/card.js"></script>
   
     </head>
-    <body>
+    <body onload="onBodyLoad()">
         <!-- HOME page -->
         <div data-role="view" id="home" data-title="BeerList" data-init="announcementListViewTemplatesInit">
 			<div data-role="content">
@@ -87,7 +87,8 @@
         
         <script type="text/x-kendo-template" id="announcement-listview-template">
             <img class="item-photo" src="http://www.adapptalo.com/test/www/pics/beerimages/${IMAGEN}" />
-            <h3 class="item-title">${CERVESERA}</h3>
+             <h2 class="item-title">${CERVESA}</h3>
+             <h3 class="item-title">${CERVESERA}</h3>
             <p class="item-info">${PROCEDENCIA}</p>
         </script>
         
@@ -204,8 +205,49 @@
         <div data-role="view" id="rewardsView" data-style="inset" data-title="Sponsors" data-init="rewardsViewInit" data-model="cardsData">
 			<div id="rewardsCardsViewContent" data-role="content">
                 
-                <!-- List of cards -->
-                <ul id="rewordsCardsList" data-role="listview" data-style="inset" data-bind="source: cards" data-template="rewordsCardsList-template"></ul>
+                <!-- List of sponsors -->
+                <ul id="rewordsCardsList" data-role="listview" data-style="inset">
+                    <li>
+                        <a class="listReswardsCard clear" target="_blank" data-role="listview-link" href='http://www.mastertent.com/es/informaci%C3%B3n/index-1.html'>
+                               
+                             <div class="cardInformationContainer">
+                                 <h1>MASTERTENT</h1>
+                             </div>
+                            
+                             <div class="clear"></div>
+                         </a>    
+                    </li>
+                    <li>
+                        <a class="listReswardsCard clear" target="_blank" data-role="listview-link" href='http://www.bcn.cat/centrecivicsantagusti/castellano/index.html'>
+                               
+                             <div class="cardInformationContainer">
+                                 <h1>Centre cívic convent de Sant Agustí</h1>
+                             </div>
+                            
+                             <div class="clear"></div>
+                         </a>    
+                    </li>
+                    <li>
+                        <a class="listReswardsCard clear" target="_blank" data-role="listview-link" href='http://pi3.es/GacetillaCervecera/'>
+                               
+                             <div class="cardInformationContainer">
+                                 <h1>Gacetilla Cervecera</h1>
+                             </div>
+                            
+                             <div class="clear"></div>
+                         </a>    
+                    </li>
+                    <li>
+                        <a class="listReswardsCard clear" target="_blank" data-role="listview-link" href='http://www.bar-beer.com/web/home.asp'>
+                               
+                             <div class="cardInformationContainer">
+                                 <h1>bar&beer</h1>
+                             </div>
+                            
+                             <div class="clear"></div>
+                         </a>    
+                    </li>
+                </ul>
             </div>
         </div>
         
