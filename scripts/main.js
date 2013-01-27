@@ -52,7 +52,26 @@ function getInitialBeersData(handler) {
 				  alert(error.message);
 			  });
 }    */
-        
+function resetGame()  
+{  
+    localStorage.clear();  
+    $('#cardsList li').remove();
+                
+    /*var containerDiv = document.getElementById("blocks");  
+    containerDiv.innerHTML = "";  
+    localStorage.clear();  
+    initializeGame();  
+    var IDS = '';
+    var sel = document.getElementsByTagName('input');
+    for (i = 0; i<sel.length; i++) {
+      if (sel[i].type = 'checkbox') {
+        IDS = sel[i].id
+        document.getElementById(IDS).checked = false;
+
+      }
+    }*/
+
+}        
 function getData(callback) {
      var template =  kendo.template($("#announcement-listview-template").html());
      var dataSource = new kendo.data.DataSource({
@@ -64,9 +83,9 @@ function getData(callback) {
                 if(cashedData != null || cashedData != undefined) {
                     //if local data exists load from it
                     operation.success(JSON.parse(cashedData));
-                    alert ("entramos aqui y cargamos localstorage!!");
+                    //alert ("entramos aqui y cargamos localstorage!!");
                 } else {
-                    alert ("es la primera instalacion,parseamos del servidor...");
+                   // alert ("es la primera instalacion,parseamos del servidor...");
                     $.ajax({ //using jsfiddle's echo service to simulate remote data loading
                         url: serviceURL + 'getbeers.php',
                         dataType: "json",

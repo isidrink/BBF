@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Jitterz Mobile</title>
+        <title>Barcelona Beer Festival 2013</title>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
         <!-- Styles -->
@@ -56,7 +56,7 @@
             }
             
             #container {
-	width: 600px; margin: 40px auto;
+	width: 100%; margin: 40px auto;
 }
 
 h1 {
@@ -200,13 +200,7 @@ ul.gallery li a {
 
         <!-- CARDS List page -->
 		<div data-role="view" id="cardsView" data-title="BeerWish" data-init="listViewCardsInit" data-model="cardsData">
-			<header data-role="header">
-				<div data-role="navbar">
-                    <a id="buttonAddNewCard" data-role="button" href="#addCardView" 
-                         data-align="right" data-icon="add"></a>
-                    <span data-role="view-title"></span>
-				</div>
-			</header>
+			
             <div id="cardsViewContent" data-role="content">
 				<!-- List of cards -->
                 <ul class="cardListWrapper" data-role="listview" data-style="inset" data-type="group">
@@ -215,6 +209,8 @@ ul.gallery li a {
                         </ul>
                     </li>
                 </ul>
+                                <button  onclick="resetGame()">Reset BeerWish</button>  
+                 <button onclick="document.location.reload(true);">Send/Share BeerWish</button> 
 			</div>
 		</div>
         
