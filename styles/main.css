@@ -2,13 +2,15 @@
 {
     margin: 12px;
     padding: 3px;
-    background: rgba(255, 255, 255, 0.7);
-    border-radius: 6px;
+    /*background: rgba(255, 255, 255, 0.7);
+    border-radius: 6px;*/
 }
 
 #announcements li
 {
-    background-color: transparent;
+    background-color: #ffffff;
+    margin-bottom: 10px;
+    border-radius: 10px;
 }
 
 .cardPicture

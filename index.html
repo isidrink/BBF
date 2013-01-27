@@ -34,17 +34,22 @@
         <script src="kendo/js/kendo.mobile.min.js"></script>
         <script type="text/javascript" src="scripts/main.js"></script>
         <script type="text/javascript" src="scripts/card.js"></script>
-     
+        <style>
+          h2{font-size: 16px;}
+          h3, h2, p {font-family: Tahoma;}
+          :-moz-any(.km-content, .km-scroll-container, .km-scrollview){width:100%}
+          .km-touch-scrollbar{background-color: #ffffff}
+        </style>
     </head>
     <body>
         <!-- HOME page -->
-        <div data-role="view" id="home" data-title="BeerList" data-init="announcementListViewTemplatesInit">
-			<div data-role="content">
-                <div id="announcements">
+        <div data-role="view" id="home" data-title="Barcelona Beer Festival 2013" data-init="announcementListViewTemplatesInit">
+			
+                <div id="announcements" data-role="scroller" class="scroller-content">
                     <ul data-role="listview" id="announcements-listview" 
                         data-style="inset" data-type="group">
                     </ul>
-                </div>
+              
             </div>
         </div>
          
@@ -90,6 +95,7 @@
              <h2 class="item-title">${CERVESA}</h3>
              <h3 class="item-title">${CERVESERA}</h3>
             <p class="item-info">${PROCEDENCIA}</p>
+            
         </script>
         
 		<script type="text/x-kendo-template" id="stores-listview-template">
@@ -117,7 +123,7 @@
 		</script>
 
         <!-- CARDS List page -->
-		<div data-role="view" id="cardsView" data-title="BeerWish" data-init="listViewCardsInit" data-model="cardsData">
+		<div data-role="view" id="cardsView" data-title="Barcelona Beer Festival 2013" data-init="listViewCardsInit" data-model="cardsData">
 			
             <div id="cardsViewContent" data-role="content">
 				<!-- List of cards -->
@@ -158,7 +164,7 @@
 		</div>
         
         <!-- Single Card page -->
-		<div data-role="view" id="singleCardView" data-style="inset" data-title="BeerWish" data-show="singleCardShow" data-model="singleCardViewModel">
+		<div data-role="view" id="singleCardView" data-style="inset" data-title="Barcelona Beer Festival 2013" data-show="singleCardShow" data-model="singleCardViewModel">
 			<header data-role="header" data-id="jitterz-default-header">
 				<div data-role="navbar">
 					<a class="nav-button" data-role="backbutton" data-align="left">Back</a>
@@ -198,7 +204,7 @@
 		</div>
         
         <!-- REWARDS page -->
-        <div data-role="view" id="rewardsView" data-style="inset" data-title="Sponsors" >
+        <div data-role="view" id="rewardsView" data-style="inset" data-title="Barcelona Beer Festival 2013" >
             <!--<div id="rewardsCardsViewContent" data-role="content">
                 
                  List of sponsors 
@@ -296,7 +302,7 @@
 		</div>
 		
           <!-- STORES page -->
-		<div data-role="view" id="stores" data-title="Contacto" data-show="storesShow" data-stretch="true">
+		<div data-role="view" id="stores" data-title="Barcelona Beer Festival 2013" data-show="storesShow" data-stretch="true">
 			
 			<div id="mapwrap" data-role="content">
                         <div id="map"></div>
