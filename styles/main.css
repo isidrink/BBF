@@ -14,7 +14,7 @@
 .cardPicture
 {
     background-repeat:no-repeat;
-    background: url("../images/beerCup-sprite.png") no-repeat 0 -100px;;
+    background: url("../images/cofeeCup-sprite.png") no-repeat 0 -100px;;
     width: 50px;
     height: 50px;
     float: left;
@@ -46,19 +46,19 @@
 }
 
 .item-photo {
-    width: 75px;
-    height: 75px;
+    width: 55px;
+    height: 55px;
     float: left;
-    margin: .5em 0;
+   /* margin: .5em 0;
     -webkit-box-shadow: 0 1px 3px #333;
     box-shadow: 0 1px 3px #333;
     -webkit-border-radius: 8px;
-    border-radius: 8px;
+    border-radius: 8px;*/
 }
 
 #announcements-listview .item-title {
 	float: left;
-	font-size: 1.2em;
+	/*font-size: 1.2em;*/
     line-height: 1.2em;
     margin: 0 0 0 .8em;
     width: 61%;
@@ -66,7 +66,7 @@
 
 #announcements-listview .item-info {
 	float: left;
-	font-size: 1em;
+	/*font-size: 1em;*/
     font-weight: 100;
 	line-height: 1em;
     margin: 0 0 0 1em;
@@ -93,10 +93,6 @@
 	-webkit-mask-box-image: url("../icons/stores.png");
 }
 
-.km-beer
-{
-	-webkit-mask-box-image: url("../icons/rewards.png");
-}
 /*66CCFF*/
 #jitterz-tabstrip,
 #jitterz-default-header .km-navbar,
@@ -149,9 +145,8 @@
 }
 .cardInformationContainer
 {
-    margin: 0 0 0 10px;
+    margin: 7px 0 0 10px;
     float: left;
-    font-size: 12px;
 }
 
 /*Single Card View Styles*/

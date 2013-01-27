@@ -12,7 +12,6 @@ var mapElem,
 cachedLocations = [];
 function getInitialBeersData() {
     
-    alert("gfg");
     $.getJSON(serviceURL + 'getbeers.php', function(data) {
 		
                //alert(JSON.stringify(data));
@@ -57,12 +56,40 @@ function getInitialBeersData(handler) {
 function getData(callback) {
      var template =  kendo.template($("#announcement-listview-template").html());
      var dataSource = new kendo.data.DataSource({
+         
          transport: {
+             read: function(operation) {
+                var cashedData = localStorage.getItem("moviesData");
+
+                if(cashedData != null || cashedData != undefined) {
+                    //if local data exists load from it
+                    operation.success(JSON.parse(cashedData));
+                    alert ("entramos aqui y cargamos localstorage!!");
+                } else {
+                    alert ("es la primera instalacion,parseamos del servidor...");
+                    $.ajax({ //using jsfiddle's echo service to simulate remote data loading
+                        url: serviceURL + 'getbeers.php',
+                        dataType: "json",
+                       /* data: {
+                            json: JSON.stringify(data)
+                        },*/
+                        success: function(response) {
+                            //store response
+                            localStorage.setItem("moviesData", JSON.stringify(response));
+                            //pass the pass response to the DataSource
+                            operation.success(response);
+                        }
+                    });
+                }                 
+            }
+         },
+         
+         /*transport: {
              read: {
                  url: serviceURL + 'getbeers.php',
                  dataType: "json" // JSONP (JSON with padding) is required for cross-domain AJAX
              }
-         },
+         },*/
          schema: {
              data: "items"
          },
@@ -213,10 +240,7 @@ function storesShow(e) {
                                 zIndex:google.maps.Marker.MAX_ZINDEX
 			});
                         
-                          var image = new google.maps.MarkerImage("images/beerCup-sprite.png",
-                        new google.maps.Size(49, 49),
-                        new google.maps.Point(0,202),
-                        new google.maps.Point(0, 32));
+                          var image = new google.maps.MarkerImage("images/icon.png");
 
                        
                         //for (var i = 0; i < locations.length; i++) {
@@ -225,7 +249,7 @@ function storesShow(e) {
                               position: myLatLng,
                               map: mapElem,
                               animation: google.maps.Animation.DROP,
-                              //icon: image,
+                              icon: image,
                               title: "Barceloa Beer Festival",
                               zIndex: google.maps.Marker.MAX_ZINDEX
                           });
