@@ -10,19 +10,7 @@ document.addEventListener("deviceready", onDeviceReady, false);
 var myArray2 = [];
 var mapElem,
 cachedLocations = [];
-function getInitialBeersData() {
-    
-    $.getJSON(serviceURL + 'getbeers.php', function(data) {
-		
-               //alert(JSON.stringify(data));
-                //alert(data);
-               employees = data.items;
-		//alert(employees);
-                $.each(employees, function(index, employee) {
-                    //alert (index+"-->"+JSON.stringify(employee));
-                });
-    });
-}
+
 function createArray(cb){
     $.getJSON(serviceURL + 'getbeers.php', function(data) {
         var myArray = [];
@@ -35,23 +23,7 @@ function createArray(cb){
     alert (myArray.length);
 }
 
-/*
-function getInitialBeersData(handler) {
-	$.getJSON("http://www.starbucks.com/api/location.ashx?&features=&lat=" + position.coords.latitude + "&long=" + position.coords.longitude + "&limit=10",
-			  function(data) {
-				  var locations = [];
-				  $.each(data, function() {
-					  locations.push(
-						  {
-						  address: this.WalkInAddressDisplayStrings[0] + ", " + this.WalkInAddressDisplayStrings[1], 
-						  latlng: new google.maps.LatLng(this.WalkInAddress.Coordinates.Latitude, this.WalkInAddress.Coordinates.Longitude)
-					  });                
-				  });
-				  handler(locations);
-			  }).error(function(error) {
-				  alert(error.message);
-			  });
-}    */
+
 function resetGame()  
 {  
     localStorage.clear();  
@@ -138,7 +110,7 @@ function onDeviceReady() {
 	});
     
     getInitialCardsData();
-    getData(onResult);   
+    //getData(onResult);   
     // TODO: get all (where applicable) event handlers into the viewModels (hint: data-bind="click: handler")
    
 	$("#cardsView").on("touchend", ".deleteCardButton", function(e) {
@@ -311,14 +283,10 @@ function announcementListViewTemplatesInit() {
 	});
 }*/
 function announcementListViewTemplatesInit() {
-/*
- createArray(function(myArray2) {
-    $("#announcements-listview").kendoMobileListView({
-            dataSource: kendo.data.DataSource.create({ data: myArray2 }),
-            template: $("#announcement-listview-template").html()
-    });
-});
-     */
+getData(onResult);  
+
+ //createArray(function(myArray2) {});
+     
     /*
     var dataSource = new kendo.data.DataSource({
         transport: {
