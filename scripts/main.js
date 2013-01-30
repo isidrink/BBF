@@ -1,3 +1,4 @@
+
 var serviceURL = "http://www.adapptalo.com/test/services/";
 //var serviceURL = "http://localhost/test/services/";
 function onBodyLoad()
@@ -20,7 +21,7 @@ function createArray(cb){
         });
         cb(myArray);
     });
-    alert (myArray.length);
+    //alert (myArray.length);
 }
 
 
@@ -184,12 +185,14 @@ function getLocations(position, handler) {
 }
 
 function getInitialCardsData(){
-    if(window.localStorage.getItem("cards")===null)
+    //alert("random?");
+		
+        if(window.localStorage.getItem("cards")===null)
     {
-        alert("first-->"+initialCards);
+       // alert("first-->"+initialCards);
         var cardData = new initialCardData(),
         initialCards = cardData.getInitialCardsData();
-        alert("second-->"+initialCards);
+        //alert("second-->"+initialCards);
         localStorage.setItem("cards",initialCards);
     }
 }
@@ -382,6 +385,7 @@ var cardsData = kendo.observable({
 		for (i = 0; i < cards.length; i+=1) {
 			this._cardNumbers[cards[i].cardNumber] = i;
 		}
+                //alert(JSON.stringify(cards));
 		cardsData.set("cards", cards);
 	},
 	cardNumbers: function(value) {
