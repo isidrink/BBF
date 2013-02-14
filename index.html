@@ -46,6 +46,8 @@
                 text-align: center;
             }
             .km-ios .km-view .km-content{background-color:transparent;background-image: none;}
+            #locate {position:absolute;z-index: 10;bottom: 0;height: 50px;}
+            #track {position:absolute;z-index: 9;bottom: 0;display: none;}         
         </style>
         <script src="http://openlayers.org/dev/lib/OpenLayers.js" type="text/javascript"></script>
         <script type="text/javascript">
@@ -590,8 +592,8 @@
 			
 			<div id="mapwrap" data-role="content">
                             <div id="map" class="smallmap"></div>
-                            <button style="position:absolute;z-index: 10;bottom: 0;height: 50px;" id="locate">Localizame!!</button>
-                            <input style="position:absolute;z-index: 9;bottom: 0;display: none;" type="checkbox" name="track" id="track">
+                            <button id="locate">Localizame!!</button>
+                            <input type="checkbox" name="track" id="track">
 			</div>
                    
 			<div id="info" style="height: 30px;text-align: center; /*background-color: #ff0000;*/display:none;">
