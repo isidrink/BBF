@@ -39,6 +39,13 @@
           h3, h2, p {font-family: Tahoma;}
           :-moz-any(.km-content, .km-scroll-container, .km-scrollview){width:100%}
           .km-touch-scrollbar{background-color: #ffffff}
+          .olControlAttribution{bottom: 0;margin-bottom: -100px;}
+          .beer_bg {
+                background: url("http://www.adapptalo.com/test/beerTexture.jpg") repeat-x scroll left top #FADE01;
+                min-height: 650px;
+                text-align: center;
+            }
+            .km-ios .km-view .km-content{background-color:transparent;background-image: none;}
         </style>
         <script src="http://openlayers.org/dev/lib/OpenLayers.js" type="text/javascript"></script>
         <script type="text/javascript">
@@ -320,13 +327,26 @@
         </script>
         
         <script type="text/x-kendo-template" id="announcement-listview-template">
-            <img class="item-photo" src="http://www.adapptalo.com/test/www/pics/beerimages/${IMAGEN}" />
+      <!--
+            
+              <img class="item-photo" src="http://www.adapptalo.com/test/www/pics/beerimages/${IMAGEN}" />
              <h2 class="item-title">${CERVESA}</h3>
              <h3 class="item-title">${CERVESERA}</h3>
              <p class="item-info">Estilo:${ESTIL_ABV_IBU}</p>
             <p class="item-info">ABV:${ABV} IBU:${IBU}</p>
-            
-            
+          
+      -->
+      <a class="listReswardsCard clear" data-role="listview-link" href='beerDetail?bonusPoints=${CERVESA}&cardNumber=${B_Id}' data-cardId="${B_Id}">
+                       
+                <div class="cardInformationContainer">
+                    <img class="item-photo" src="http://www.adapptalo.com/test/www/pics/beerimages/${IMAGEN}" />
+             <h2 class="item-title">${CERVESA}</h3>
+             <h3 class="item-title">${CERVESERA}</h3>
+             <p class="item-info">Estilo:${ESTIL_ABV_IBU}</p>
+            <p class="item-info">ABV:${ABV} IBU:${IBU}</p>
+                </div>
+                <div class="clear"></div>
+            </a> 
         </script>
         
 		<script type="text/x-kendo-template" id="stores-listview-template">
@@ -491,6 +511,41 @@
 
         </div>
         
+        <!-- BEER DETAIL page -->
+
+		<div class="beer_bg" data-role="view" id="beerDetail" data-style="inset"  data-title="Beer Detail" data-show="rewardCardShow" data-model="rewardsViewModel">
+			<header data-role="header" data-id="jitterz-default-header">
+				<div data-role="navbar">
+					<a class="nav-button" data-role="backbutton" data-align="left">Back</a>
+					<span data-role="view-title"></span>
+				</div>
+			</header>
+			<div id="singleCardContainer" class="clear">
+				<div id="rewardCardFront" class="cardStyle" >
+					<div class="clear">
+						<div class="iconContainer">
+							<div class="icon"></div>
+						</div>
+						<div class="bonusContainer clear">
+							
+						</div>
+
+					</div>
+					<div class="amountLine">
+						<div class="cardNumberLine" data-bind="text: cardNumber"></div>
+					</div>
+				</div>
+				<div id="rewardCardBack" class="cardStyle clear gold">
+					<img id="barcodeImage" data-bind='attr: {src:barcodeURL}' alt="Shop Card Id"/>
+				</div>
+			</div>
+			<div class="clear">
+				<div></div>
+			</div>
+		</div>
+        
+        
+        
 		<!-- REWARD CARD page -->
 
 		<div data-role="view" id="rewardCard" data-style="inset"  data-title="Reward Card" data-show="rewardCardShow" data-model="rewardsViewModel">
@@ -535,8 +590,8 @@
 			
 			<div id="mapwrap" data-role="content">
                             <div id="map" class="smallmap"></div>
-                            <button style="position:absolute;z-index: 10;bottom: 0;" id="locate">Localizame!!</button>
-                            <input style="position:absolute;z-index: 9;bottom: 0;" type="checkbox" name="track" id="track">
+                            <button style="position:absolute;z-index: 10;bottom: 0;height: 50px;" id="locate">Localizame!!</button>
+                            <input style="position:absolute;z-index: 9;bottom: 0;display: none;" type="checkbox" name="track" id="track">
 			</div>
                    
 			<div id="info" style="height: 30px;text-align: center; /*background-color: #ff0000;*/display:none;">
