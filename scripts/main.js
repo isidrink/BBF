@@ -286,8 +286,8 @@ function announcementListViewTemplatesInit() {
 		template: $("#announcement-listview-template").html()
 	});
 }*/
-//function announcementListViewTemplatesInit() {
-getData(onResult); 
+function announcementListViewTemplatesInit() {
+//getData(onResult); 
 $("#announcements-listview").kendoMobileListView({
 		dataSource: kendo.data.DataSource.create({ data: announcementData }),
 		template: $("#announcement-listview-template").html()
