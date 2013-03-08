@@ -198,7 +198,7 @@ function setStiresViews(locations) {
 												new google.maps.Point(12, 35));*/
     
 
-     var pimImage = new google.maps.MarkerImage("../images/cofeeCup-sprite.png",
+     var pimImage = new google.maps.MarkerImage("http://www.adapptalo.es/test/icon.png",
       new google.maps.Size(49, 49),
       new google.maps.Point(0,202),
       new google.maps.Point(0, 32));
@@ -428,11 +428,12 @@ var rewardsViewModel = new kendo.observable({
 		setBonusPoints: function(e){
             var that = this,
             bonusPointsReceived=e.view.params.bonusPoints,
-            bonusCardBarcodeSeq = e.view.params.cardNumber+"bonus",
+            bonusCardBarcodeSeq = e.view.params.bonusPoints,
             currentCard = null,
             barcode =generateBarcodeUrl(bonusCardBarcodeSeq) ;
             that.set("cardNumber","#"+e.view.params.cardNumber);
-            that.set("bonusPoints","Bonus:"+bonusPointsReceived);
+            that.set("bonusPoints",bonusPointsReceived);
+            
             if(bonusPointsReceived<50)
              {
                 currentCard = rewardCards["silver"];

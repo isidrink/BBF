@@ -4,6 +4,12 @@
         <title>Barcelona Beer Festival 2013</title>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+        <meta property="og:title" content="Barcelona Beer Festival 2013" />
+
+<meta property="og:description" content="Application from Barcelona Beer Fest 2013" />
+
+<meta property="og:image" content="http://www.barcelonabeerfestival.com/imatges/img_setbbf.jpg" />
+
         <!-- Styles -->
         <link rel="stylesheet" href="kendo/styles/kendo.mobile.all.min.css" />
         <link rel="stylesheet" href="kendo/styles/kendo.jitterz.mobile.all.css" />
@@ -85,11 +91,24 @@
         </script>
         
         <script type="text/x-kendo-template" id="announcement-listview-template">
+            <!--
             <img class="item-photo" src="http://www.adapptalo.com/test/www/pics/BBFbeers/${IMAGEN}" />
             <h3 class="item-title">${CERVESA}</h3>
             <p class="item-info">${PROCEDENCIA}</p>
             <p class="item-info">Estilo:${ESTIL}</p>
             <p class="item-info">ABV:${ABV} IBU:${IBU}</p>
+             -->
+      <a class="listReswardsCard clear" data-role="listview-link" href='beerDetail?bonusPoints=${CERVESA}&cardNumber=${B_Id}' data-cardId="${B_Id}">
+                       
+                <div class="cardInformationContainer">
+                    <img class="item-photo" src="http://www.adapptalo.com/test/www/pics/BBFbeers/${IMAGEN}" />
+             <h2 class="item-title">${CERVESA}</h3>
+             <h3 class="item-title">${CERVESERA}</h3>
+             <p class="item-info">Estilo:${ESTIL}</p>
+            <p class="item-info">ABV:${ABV} IBU:${IBU}</p>
+                </div>
+                <div class="clear"></div>
+            </a> 
         </script>
         <!--<script type="text/x-kendo-template" id="announcement-listview-template">
             <img class="item-photo" src="${url}" />
@@ -121,6 +140,42 @@
 	        <p class="item-info">${reward}</p>
 		</script>
 
+                 <!-- BEER DETAIL page -->
+
+		<div class="beer_bg" data-role="view" id="beerDetail" data-style="inset"  data-title="Beer Detail" data-show="rewardCardShow" data-model="rewardsViewModel">
+			<header data-role="header" data-id="jitterz-default-header">
+				<div data-role="navbar">
+					<a class="nav-button" data-role="backbutton" data-align="left">Back</a>
+					<span data-role="view-title"></span>
+				</div>
+			</header>
+			<div id="singleCardContainer" class="clear">
+				<div id="rewardCardFront" class="cardStyle" >
+					<div class="clear">
+						<div class="iconContainer">
+							<div class="icon"></div>
+						</div>
+						<div class="bonusContainer clear">
+                                                 <span data-bind="text: description"></span>
+                                                        
+						</div>
+
+					</div>
+					<div class="amountLine">
+						<div class="cardNumberLine" data-bind="text: bonusPoints"></div>
+					</div>
+                                    
+                                </div>
+                                <div id="rewardCardBack" class="cardStyle clear gold">
+                                        <img id="barcodeImage2" data-bind='attr: {src:barcodeURL}' alt="text: bonusPoints"/>
+                                </div>
+                        </div>
+                        <div class="clear">
+                                <div></div>
+			</div>
+		</div>
+        
+        
         <!-- CARDS List page -->
 		<div data-role="view" id="cardsView" data-title="BeerWish" data-init="listViewCardsInit" data-model="cardsData">
 			<header data-role="header">
