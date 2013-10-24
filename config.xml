@@ -14,7 +14,7 @@ Aplicación para el festival de cerveza de Barcelona, el Barcelona Beer Festival
 EasyDraw by adapptalo
 </author>
 
-<preference name="phonegap-version" value="1.7.0" />
+<preference name="phonegap-version" value="2.9.0" />
 
 <!-- Icons -->
 
