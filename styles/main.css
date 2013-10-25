@@ -464,3 +464,11 @@ input::-webkit-inner-spin-button {
     pointer-events: none;
     cursor: default;
 }
+#locate{
+    /*background:red;*/
+    width:90px;
+    height:50px;
+    position:fixed;
+    top:20px;
+    right:10px;
+}
