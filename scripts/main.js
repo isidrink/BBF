@@ -366,7 +366,7 @@ function announcementListViewTemplatesInit() {
         $("#announcements-listview").kendoMobileListView({
                 dataSource: kendo.data.DataSource.create({data: beers, group: "CERVESERA"}),
 
-                template: "${CERVESA}",                    
+                template: "<a class='listReswardsCard clear' data-role='listview-link' href='beerDetail?bonusPoints=${CERVESA}&cardNumber=${B_Id}' data-cardId='${B_Id}'>${CERVESA}</a>",                    
 
                 pullToRefresh: true,                          
 

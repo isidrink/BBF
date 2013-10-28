@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Barcelona Beer Festival 2013</title>
+        <title>Barcelona Beer Festival 2014</title>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
         <!-- Styles -->
         <link rel="stylesheet" href="kendo/styles/kendo.mobile.all.min.css" />
         <link rel="stylesheet" href="kendo/styles/kendo.jitterz.mobile.all.css" />
+        <link href="kendo/styles/kendo.indexedlistview.css" rel="stylesheet" />
         
         <!-- Default Stylesheet -->
         <link rel="stylesheet" href="styles/main.css" />
@@ -34,6 +35,7 @@
         <script src="kendo/js/kendo.mobile.min.js"></script>
         <script type="text/javascript" src="scripts/main.js"></script>
         <script type="text/javascript" src="scripts/card.js"></script>
+        <script type="text/javascript" src="kendo/js/kendo.indexedlistview.js"></script>
         <style>
           h2{font-size: 13px;}
           h3, h2, p {font-family: Tahoma;}
@@ -158,7 +160,7 @@
                 map.addLayer(lyrOsm);
                 lyrMarkers = new OpenLayers.Layer.Markers("Markers");
                 map.addLayer(lyrMarkers);
-                addMarker(2.149218,41.376293, '<b>Barcelona Beer Festival 2013</b><br/>LAS ARENAS');
+                addMarker(2.149218,41.376293, '<b>Barcelona Beer Festival 2014</b><br/>LAS ARENAS');
                 //addMarker(121.04931, 14.65105, '<b>Quezon Memorial Circle</b><br/>Philippines');
                 center = bounds.getCenterLonLat();
                 map.setCenter(center, map.getZoomForExtent(bounds) - 1);
@@ -281,10 +283,10 @@
     </head>
     <body>
         <!-- HOME page -->
-        <div data-role="view" id="home" data-title="Barcelona Beer Festival 2013" data-init="announcementListViewTemplatesInit">
+        <div data-role="view" id="home" data-title="Barcelona Beer Festival 2014" data-init="announcementListViewTemplatesInit">
 			
                 <div id="announcements" data-role="scroller" class="scroller-content">
-                    <ul data-role="listview" id="announcements-listview" 
+                    <ul data-role="indexedlistview" id="announcements-listview" 
                         data-style="inset" data-type="group">
                     </ul>
               
@@ -380,7 +382,7 @@
 		</script>
 
         <!-- CARDS List page -->
-		<div data-role="view" id="cardsView" data-title="Barcelona Beer Festival 2013" data-init="listViewCardsInit" data-model="cardsData">
+		<div data-role="view" id="cardsView" data-title="Barcelona Beer Festival 2014" data-init="listViewCardsInit" data-model="cardsData">
 			
             <div id="cardsViewContent" data-role="content">
 				<!-- List of cards -->
@@ -421,7 +423,7 @@
 		</div>
         
         <!-- Single Card page -->
-		<div data-role="view" id="singleCardView" data-style="inset" data-title="Barcelona Beer Festival 2013" data-show="singleCardShow" data-model="singleCardViewModel">
+		<div data-role="view" id="singleCardView" data-style="inset" data-title="Barcelona Beer Festival 2014" data-show="singleCardShow" data-model="singleCardViewModel">
 			<header data-role="header" data-id="jitterz-default-header">
 				<div data-role="navbar">
 					<a class="nav-button" data-role="backbutton" data-align="left">Back</a>
@@ -461,7 +463,7 @@
 		</div>
         
         <!-- REWARDS page -->
-        <div data-role="view" id="rewardsView" data-style="inset" data-title="Barcelona Beer Festival 2013" >
+        <div data-role="view" id="rewardsView" data-style="inset" data-title="Barcelona Beer Festival 2014" >
             <!--<div id="rewardsCardsViewContent" data-role="content">
                 
                  List of sponsors 
@@ -538,7 +540,7 @@
 
 					</div>
 					<div class="amountLine">
-						<div class="cardNumberLine" data-bind="text: cardNumber"></div>
+						<div class="cardNumberLine" data-bind="text: bonusPoints"></div>
 					</div>
 				</div>
 				<div id="rewardCardBack" class="cardStyle clear gold">
@@ -592,7 +594,7 @@
 		</div>
              
           <!-- STORES page -->
-		<div data-role="view" id="stores" data-title="Barcelona Beer Festival 2013" data-show="initMap" data-stretch="true">
+		<div data-role="view" id="stores" data-title="Barcelona Beer Festival 2014" data-show="initMap" data-stretch="true">
 			
 			<div id="mapwrap" data-role="content">
                             <div id="map" class="smallmap"></div>
@@ -602,7 +604,7 @@
                    
 			<div id="info" style="height: 30px;text-align: center; /*background-color: #ff0000;*/display:none;">
                                 <h2 class="item-title">8,9 i 10</h3>
-                                <h3 class="item-title">Mar� 2013</h3>
+                                <h3 class="item-title">Mar� 2014</h3>
                                <p class="item-info">C�PULA LAS ARENAS</p>
                         </div>
 		</div>
