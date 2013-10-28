@@ -291,6 +291,10 @@
             </div>
         </div>
          
+        <div data-role="view" id="beersView" data-title="page_test" id="page_test" data-transition="slide" data-init="mobileListViewDataBindInitGrouped">
+            <h2>Test remote datasource</h2>
+            <ul id="grouped-listview"></ul>
+        </div>
         <!-- Templates -->
         <script type="text/x-kendo-template" id="rewordsCardsList-template">
             <a class="listReswardsCard clear" data-role="listview-link" href='rewardCard?bonusPoints=${bonusPoints}&cardNumber=${cardNumber}' data-cardId="${cardNumber}">
@@ -477,7 +481,7 @@
                         <a target="_blank" href='http://www.bcn.cat/centrecivicsantagusti/castellano/index.html'>
                                
                              <div class="cardInformationContainer">
-                                <img src="http://www.adapptalo.com/test/www/pics/sponsors/convent.png" alt="Centre cívic SanT Agustí" />
+                                <img src="http://www.adapptalo.com/test/www/pics/sponsors/convent.png" alt="Centre cï¿½vic SanT Agustï¿½" />
                              </div>
                             
                          </a>    
@@ -505,7 +509,7 @@
             </div> -->
                    <ul class="gallery">
                             <li><a target="_blank" href="http://www.mastertent.com/es/informaci%C3%B3n/index-1.html" class="pic-1"><img src="http://www.adapptalo.com/test/www/pics/sponsors/mastertent2.png" alt="MASTERTEND" /></a></li>
-                            <li><a target="_blank" href="http://www.bcn.cat/centrecivicsantagusti/castellano/index.html" class="pic-2"><img src="http://www.adapptalo.com/test/www/pics/sponsors/convent.png" alt="Centre cívic SanT Agustí"/></a></li>
+                            <li><a target="_blank" href="http://www.bcn.cat/centrecivicsantagusti/castellano/index.html" class="pic-2"><img src="http://www.adapptalo.com/test/www/pics/sponsors/convent.png" alt="Centre cï¿½vic SanT Agustï¿½"/></a></li>
                             <li><a target="_blank" href="http://pi3.es/GacetillaCervecera/" class="pic-3"><img src="http://www.adapptalo.com/test/www/pics/sponsors/Logo-Gacetilla.png" alt="Gacetilla Cervecera"/></a></li>
                             <li><a target="_blank" href="http://www.bar-beer.com/web/home.asp" class="pic-4"><img src="http://www.adapptalo.com/test/www/pics/sponsors/barbeer.png" alt="bar&beer" /></a></li>
                    </ul>
@@ -598,8 +602,8 @@
                    
 			<div id="info" style="height: 30px;text-align: center; /*background-color: #ff0000;*/display:none;">
                                 <h2 class="item-title">8,9 i 10</h3>
-                                <h3 class="item-title">Març 2013</h3>
-                               <p class="item-info">CÚPULA LAS ARENAS</p>
+                                <h3 class="item-title">Marï¿½ 2013</h3>
+                               <p class="item-info">Cï¿½PULA LAS ARENAS</p>
                         </div>
 		</div>
 
@@ -614,7 +618,7 @@
 			<div data-role="footer">
 				<div data-role="tabstrip" data-id="jitterz-tabstrip">
 					<a href="#home" data-icon="home">BeerList</a>
-					<a href="#cardsView" data-icon="card">BeerWish</a>
+                                        <a href="#cardsView" data-icon="card">BeerWish</a>
 					<a href="#rewardsView" data-icon="rewards">Sponsors</a>
 					<a href="#stores" data-icon="globe">Contacto</a>
 				</div>
@@ -622,6 +626,32 @@
 		</div>
 
         <script>
+            var datakilde = new kendo.data.DataSource({
+                transport: {
+                    read: {
+                        // contentType: "application/json", //Not required
+                        // the remote service url
+                        url: "http://adapptalo.com/BBF/services2/getbeers.php",
+
+                        // JSONP is required for cross-domain AJAX
+                        dataType: "jsonp"
+                    }
+                },
+                // describe the result format
+                schema: {
+                    // the data which the data source will be bound to is in the "results" field
+                    data: "items"
+                }
+            });
+
+            //var datakilde = new kendo.data.DataSource.create([{name: "bar", letter:'b'}, {name: "baz", letter: 'bb'}])
+
+            function mobileListViewDataBindInitGrouped() {
+                $("#grouped-listview").kendoMobileListView({
+                    dataSource: datakilde,
+                    template: "gdfgdfg"
+                });
+            }        
             var app = new kendo.mobile.Application(document.body, { transition: "slide", layout: "jitterz-default" });
         </script>
     </body>
