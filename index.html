@@ -36,6 +36,7 @@
         <script type="text/javascript" src="scripts/main.js"></script>
         <script type="text/javascript" src="scripts/card.js"></script>
         <script type="text/javascript" src="kendo/js/kendo.indexedlistview.js"></script>
+            <script type="text/javascript" src="scripts/mapbox.share.js"></script>
         <style>
           h2{font-size: 13px;}
           h3, h2, p {font-family: Tahoma;}
@@ -287,7 +288,7 @@
 			
                 <div id="announcements" data-role="scroller" class="scroller-content">
                     <ul data-role="indexedlistview" id="announcements-listview" 
-                        data-style="inset" data-type="group">
+                        data-style="inset" data-endless-scroll="true" data-type="group">
                     </ul>
               
             </div>
